@@ -1,0 +1,35 @@
+plugins {
+    id "java-gradle-plugin"
+    id "maven-publish"
+}
+
+gradlePlugin {
+    plugins {
+        fluff {
+            id = "fluff-gradle"
+            implementationClass = "fluff.gradle.FluffGradle"
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven { url "https://jitpack.io" }
+}
+
+dependencies {
+	
+}
+
+java {
+	withSourcesJar()
+	withJavadocJar()
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+			from components.java
+        }
+    }
+}
