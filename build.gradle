@@ -6,7 +6,7 @@ plugins {
 gradlePlugin {
     plugins {
         fluff {
-            id = "fluff-gradle"
+            id = "com.github.muscaa.fluff-gradle"
             implementationClass = "fluff.gradle.FluffGradle"
         }
     }
