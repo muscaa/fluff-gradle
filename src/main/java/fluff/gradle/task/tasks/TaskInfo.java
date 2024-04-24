@@ -1,4 +1,4 @@
-package fluff.gradle.tasks;
+package fluff.gradle.task.tasks;
 
 import org.gradle.api.DefaultTask;
 import org.gradle.api.tasks.TaskAction;
