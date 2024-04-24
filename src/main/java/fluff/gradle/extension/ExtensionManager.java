@@ -1,14 +1,22 @@
 package fluff.gradle.extension;
 
 import fluff.gradle.AbstractManager;
-import fluff.gradle.extension.extensions.ExtensionFluff;
+import fluff.gradle.extension.impl.ExtensionFluff;
 
 public class ExtensionManager extends AbstractManager {
 	
-	public ExtensionFluff fluff;
+	private ExtensionFluff main;
 	
 	@Override
 	protected void onInit() {
-		fluff = extensions.create("fluff", ExtensionFluff.class);
+		
+	}
+	
+	public void setMain(Class<? extends ExtensionFluff> type) {
+		main = extensions.create("fluff", type);
+	}
+	
+	public <V extends ExtensionFluff> V getMain() {
+		return (V) main;
 	}
 }

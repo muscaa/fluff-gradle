@@ -24,7 +24,7 @@ public abstract class AbstractManager {
 	
 	protected void init(FluffGradle fluff) {
 		this.fluff = fluff;
-		this.project = fluff.project;
+		this.project = fluff.gradleProject;
 		
 		this.plugins = project.getPlugins();
 		this.repositories = project.getRepositories();
