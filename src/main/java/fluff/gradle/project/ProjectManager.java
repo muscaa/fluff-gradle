@@ -42,6 +42,7 @@ public class ProjectManager extends AbstractManager {
 		theProject.onPostInit();
 		
 		Utils.addIncludes(fluff, p);
+		if (fluff.properties.sourcedocs) Utils.includeSourcesAndDocs(p);
 	}
 	
 	public AbstractProject get() {

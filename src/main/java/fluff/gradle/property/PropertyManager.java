@@ -5,14 +5,14 @@ import fluff.gradle.AbstractManager;
 public class PropertyManager extends AbstractManager {
 	
 	public String type;
-	public boolean publish;
-	public boolean source;
+	public boolean sourcedocs;
+	public String plugin_publish;
 	
 	@Override
 	protected void onInit() {
 		type = getString("fluff.type");
-		publish = getBoolean("fluff.publish", false);
-		source = getBoolean("fluff.source", false);
+		sourcedocs = getBoolean("fluff.sourcedocs", false);
+		plugin_publish = getString("fluff.plugin.publish", null);
 	}
 	
 	public boolean has(String name) {

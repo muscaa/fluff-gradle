@@ -36,7 +36,7 @@ public class FluffGradle implements Plugin<Project> {
 		init(project);
 	}
 	
-	public void init(AbstractManager manager) {
+	public void init(FluffBase manager) {
 		manager.init(this);
 	}
 	

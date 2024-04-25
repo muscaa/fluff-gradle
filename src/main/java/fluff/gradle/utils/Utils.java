@@ -1,6 +1,7 @@
 package fluff.gradle.utils;
 
 import org.gradle.api.Project;
+import org.gradle.api.plugins.JavaPluginExtension;
 import org.gradle.api.provider.ListProperty;
 import org.gradle.api.tasks.bundling.Jar;
 
@@ -20,5 +21,14 @@ public class Utils {
         }
         
         p.getTasks().named("build").configure(build -> build.dependsOn(jar));
+	}
+	
+	public static void includeSourcesAndDocs(Project project) {
+		project.afterEvaluate(p -> {
+			p.getExtensions().configure(JavaPluginExtension.class, ext -> {
+	            ext.withSourcesJar();
+	            ext.withJavadocJar();
+	        });
+		});
 	}
 }

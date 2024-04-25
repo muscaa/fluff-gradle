@@ -2,11 +2,21 @@ package fluff.gradle.project;
 
 import org.gradle.api.Project;
 
-import fluff.gradle.AbstractManager;
+import fluff.gradle.FluffBase;
+import fluff.gradle.FluffGradle;
 
-public abstract class AbstractProject extends AbstractManager {
+public abstract class AbstractProject extends FluffBase {
+	
+	protected abstract void onInit();
 	
 	protected void onPreInit(Project p) {}
 	
-	protected void onPostInit() {} // after plugins have been initialised
+	protected void onPostInit() {}
+	
+	@Override
+	protected void init(FluffGradle fluff) {
+		super.init(fluff);
+		
+		onInit();
+	}
 }
