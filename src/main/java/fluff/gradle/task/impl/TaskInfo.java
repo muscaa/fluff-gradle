@@ -2,13 +2,12 @@ package fluff.gradle.task.impl;
 
 import org.gradle.api.DefaultTask;
 import org.gradle.api.Project;
-import org.gradle.api.Task;
 import org.gradle.api.provider.ListProperty;
 import org.gradle.api.tasks.TaskAction;
 
 import fluff.gradle.FluffGradle;
 
-public class TaskInfo extends DefaultTask {
+public abstract class TaskInfo extends DefaultTask {
 	
 	@TaskAction
 	public void onAction() {
@@ -30,8 +29,5 @@ public class TaskInfo extends DefaultTask {
 			System.out.println(c.getName());
 		});
 		System.out.println();
-		
-		Task tasks = p.getTasks().getByName("tasks");
-		System.out.println(tasks.getClass());
 	}
 }
