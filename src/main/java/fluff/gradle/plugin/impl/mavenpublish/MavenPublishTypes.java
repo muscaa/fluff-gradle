@@ -3,33 +3,23 @@ package fluff.gradle.plugin.impl.mavenpublish;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.gradle.api.Project;
-import org.gradle.api.publish.PublishingExtension;
 import org.gradle.api.publish.maven.MavenPublication;
 
 public class MavenPublishTypes {
 	
-	public static final IPublishType MAVEN = new IPublishType() {
-		
-		@Override
-		public void apply(Project p, PublishingExtension publishing) {
-			publishing.publications(publications -> {
-				publications.create("maven", MavenPublication.class, publication -> {
-					publication.from(p.getComponents().getByName("java"));
-				});
+	public static final IPublishType MAVEN = (p, publishing) -> {
+		publishing.publications(publications -> {
+			publications.create("maven", MavenPublication.class, publication -> {
+				publication.from(p.getComponents().getByName("java"));
 			});
-		}
+		});
 	};
-	public static final IPublishType LOCAL = new IPublishType() {
-		
-		@Override
-		public void apply(Project p, PublishingExtension publishing) {
-			publishing.repositories(repos -> {
-				repos.maven(repo -> {
-					repo.setUrl(p.getLayout().getBuildDirectory().dir("repo").get().getAsFile().toURI());
-				});
+	public static final IPublishType LOCAL = (p, publishing) -> {
+		publishing.repositories(repos -> {
+			repos.maven(repo -> {
+				repo.setUrl(p.getLayout().getBuildDirectory().dir("repo"));
 			});
-		}
+		});
 	};
 	
 	private static final Map<String, IPublishType> REG = new HashMap<>();

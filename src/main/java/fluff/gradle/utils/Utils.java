@@ -9,18 +9,21 @@ import fluff.gradle.FluffGradle;
 
 public class Utils {
 	
-	public static void addIncludes(FluffGradle fluff, Project p) {
-		Jar jar = (Jar) p.getTasks().getByName("jar");
-        //jar.from("src/main/java").exclude("**/*.java");
-        
+	private static void addIncludes(FluffGradle fluff, Project p, Jar task) {
         ListProperty<String> include = fluff.extensions.getMain().getInclude();
-        if (include.isPresent()) {
-        	for (String path : include.get()) {
-        		jar.from(p.file(path), spec -> spec.into("META-INF"));
-        	}
-        }
+        if (!include.isPresent()) return;
         
-        p.getTasks().named("build").configure(build -> build.dependsOn(jar));
+        //task.from("src/main/java").exclude("**/*.java");
+    	for (String path : include.get()) {
+    		task.from(p.file(path), spec -> spec.into("META-INF"));
+    	}
+        
+        p.getTasks().named("build").configure(build -> build.dependsOn(task));
+	}
+	
+	public static void addIncludes(FluffGradle fluff, Project p) {
+		addIncludes(fluff, p, (Jar) p.getTasks().getByName("jar"));
+		addIncludes(fluff, p, (Jar) p.getTasks().getByName("sourcesJar"));
 	}
 	
 	public static void includeSourcesAndDocs(Project project) {
