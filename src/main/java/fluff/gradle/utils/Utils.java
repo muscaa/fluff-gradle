@@ -23,15 +23,17 @@ public class Utils {
 	
 	public static void addIncludes(FluffGradle fluff, Project p) {
 		addIncludes(fluff, p, (Jar) p.getTasks().getByName("jar"));
-		addIncludes(fluff, p, (Jar) p.getTasks().getByName("sourcesJar"));
 	}
 	
-	public static void includeSourcesAndDocs(Project project) {
+	public static void includeSourcesAndDocs(FluffGradle fluff, Project project) {
 		project.afterEvaluate(p -> {
 			p.getExtensions().configure(JavaPluginExtension.class, ext -> {
 	            ext.withSourcesJar();
 	            ext.withJavadocJar();
 	        });
+			
+			addIncludes(fluff, p, (Jar) p.getTasks().getByName("sourcesJar"));
+			addIncludes(fluff, p, (Jar) p.getTasks().getByName("javadocJar"));
 		});
 	}
 }

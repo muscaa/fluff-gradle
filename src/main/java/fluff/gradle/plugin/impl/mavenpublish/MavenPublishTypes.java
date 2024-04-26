@@ -17,20 +17,24 @@ public class MavenPublishTypes {
 	public static final IPublishType LOCAL = (p, publishing) -> {
 		publishing.repositories(repos -> {
 			repos.maven(repo -> {
-				repo.setUrl(p.getLayout().getBuildDirectory().dir("repo"));
+				repo.setUrl(p.uri(p.getLayout().getBuildDirectory().dir("repo")));
 			});
 		});
 	};
 	
 	private static final Map<String, IPublishType> REG = new HashMap<>();
 	static {
-		REG.put("maven", MAVEN);
-		REG.put("local", LOCAL);
+		register("maven", MAVEN);
+		register("local", LOCAL);
 	}
 	
 	public static IPublishType get(String name) {
 		if (!REG.containsKey(name)) throw new RuntimeException(name + " is not a valid publishing type!");
 		
 		return REG.get(name);
+	}
+	
+	public static void register(String name, IPublishType type) {
+		REG.put(name, type);
 	}
 }
