@@ -7,7 +7,5 @@ public class ProjectLibrary extends AbstractProject {
 	@Override
 	protected void onInit() {
 		plugins.apply("java-library");
-		
-		fluff.extensions.setMain(ExtensionLibrary.class);
 	}
 }

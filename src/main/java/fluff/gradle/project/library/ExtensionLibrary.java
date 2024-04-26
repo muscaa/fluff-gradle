@@ -1,6 +1,7 @@
 package fluff.gradle.project.library;
 
-import fluff.gradle.extension.impl.ExtensionMain;
+import org.gradle.api.plugins.ExtensionAware;
 
-public abstract class ExtensionLibrary extends ExtensionMain {
+public abstract class ExtensionLibrary implements ExtensionAware {
+	
 }

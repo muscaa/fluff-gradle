@@ -3,14 +3,14 @@ plugins {
     id "maven-publish"
 }
 
-gradlePlugin {
+/*gradlePlugin {
     plugins {
         fluff {
             id = "com.github.muscaa.fluff-gradle"
             implementationClass = "fluff.gradle.FluffGradle"
         }
     }
-}
+}*/
 
 repositories {
     mavenCentral()
@@ -21,7 +21,7 @@ dependencies {
 	
 }
 
-java {
+/*java {
 	withSourcesJar()
 	withJavadocJar()
 }
@@ -30,6 +30,26 @@ publishing {
     publications {
         maven(MavenPublication) {
 			from components.java
+        }
+    }
+}*/
+
+group "fluff.gradle"
+version "0"
+
+gradlePlugin {
+    plugins {
+        fluff {
+            id = "fluff-gradle"
+            implementationClass = "fluff.gradle.FluffGradle"
+        }
+    }
+}
+
+publishing {
+    repositories {
+        maven {
+            url = uri(layout.buildDirectory.dir("repo"))
         }
     }
 }

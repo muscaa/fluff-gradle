@@ -9,6 +9,7 @@ import org.gradle.api.Project;
 import fluff.gradle.AbstractManager;
 import fluff.gradle.project.application.ProjectApplication;
 import fluff.gradle.project.library.ProjectLibrary;
+import fluff.gradle.project.plugin.ProjectPlugin;
 import fluff.gradle.utils.Utils;
 
 public class ProjectManager extends AbstractManager {
@@ -18,8 +19,9 @@ public class ProjectManager extends AbstractManager {
 	private AbstractProject theProject;
 	
 	public ProjectManager() {
-		reg.put("application", ProjectApplication::new);
-		reg.put("library", ProjectLibrary::new);
+		register("application", ProjectApplication::new);
+		register("library", ProjectLibrary::new);
+		register("plugin", ProjectPlugin::new);
 	}
 	
 	@Override
@@ -43,6 +45,10 @@ public class ProjectManager extends AbstractManager {
 		
 		Utils.addIncludes(fluff, p);
 		if (fluff.properties.sourcedocs) Utils.includeSourcesAndDocs(fluff, p);
+	}
+	
+	public void register(String type, Supplier<AbstractProject> supplier) {
+		reg.put(type, supplier);
 	}
 	
 	public AbstractProject get() {

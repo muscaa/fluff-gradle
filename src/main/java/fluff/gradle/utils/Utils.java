@@ -10,7 +10,7 @@ import fluff.gradle.FluffGradle;
 public class Utils {
 	
 	private static void addIncludes(FluffGradle fluff, Project p, Jar task) {
-        ListProperty<String> include = fluff.extensions.getMain().getInclude();
+        ListProperty<String> include = fluff.extensions.main.getInclude();
         if (!include.isPresent()) return;
         
         //task.from("src/main/java").exclude("**/*.java");

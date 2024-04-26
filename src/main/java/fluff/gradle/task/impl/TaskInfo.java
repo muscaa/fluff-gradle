@@ -18,7 +18,7 @@ public abstract class TaskInfo extends DefaultTask {
 		System.out.println();
 		
 		System.out.println("Includes:");
-		ListProperty<String> includeFiles = fluff.extensions.getMain().getInclude();
+		ListProperty<String> includeFiles = fluff.extensions.main.getInclude();
 		if (includeFiles.isPresent()) {
 			includeFiles.get().forEach(System.out::println);
 		}
