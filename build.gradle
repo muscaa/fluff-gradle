@@ -1,20 +1,20 @@
 plugins {
-    //id "java-gradle-plugin"
-    //id "maven-publish"
+    id "java-gradle-plugin"
+    id "maven-publish"
     
-    id "com.github.muscaa.fluff-gradle" version "1.0.9"
+    //id "com.github.muscaa.fluff-gradle" version "1.0.9"
 }
 
-/*gradlePlugin {
+gradlePlugin {
     plugins {
         fluff {
             id = "com.github.muscaa.fluff-gradle"
             implementationClass = "fluff.gradle.FluffGradle"
         }
     }
-}*/
+}
 
-group "fluff.gradle"
+/*group "fluff.gradle"
 version "0"
 
 fluff {
@@ -25,7 +25,7 @@ fluff {
 		id = "fluff-gradle"
 		implClass = "fluff.gradle.FluffGradle"
 	}
-}
+}*/
 
 repositories {
     mavenCentral()
