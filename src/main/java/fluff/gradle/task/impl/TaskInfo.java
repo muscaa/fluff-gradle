@@ -29,5 +29,8 @@ public abstract class TaskInfo extends DefaultTask {
 			System.out.println(c.getName());
 		});
 		System.out.println();
+		
+		Object gradlePlugin = p.getExtensions().getByName("gradlePlugin");
+		System.out.println(gradlePlugin.getClass());
 	}
 }

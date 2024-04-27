@@ -1,28 +1,31 @@
 plugins {
-    id "java-gradle-plugin"
-    id "maven-publish"
+    //id "java-gradle-plugin"
+    //id "maven-publish"
     
-    //id "com.github.muscaa.fluff-gradle" version "1.0.8"
+    id "com.github.muscaa.fluff-gradle" version "1.0.9"
 }
 
-gradlePlugin {
+/*gradlePlugin {
     plugins {
         fluff {
             id = "com.github.muscaa.fluff-gradle"
             implementationClass = "fluff.gradle.FluffGradle"
         }
     }
-}
+}*/
 
-/*fluff {
+group "fluff.gradle"
+version "0"
+
+fluff {
 	include = [ "LICENSE", "NOTICE" ]
 	plugin {
-		name = "fluff-gradle"
+		name = "fluff"
 		//id = "com.github.muscaa.fluff-gradle"
 		id = "fluff-gradle"
 		implClass = "fluff.gradle.FluffGradle"
 	}
-}*/
+}
 
 repositories {
     mavenCentral()
@@ -33,7 +36,7 @@ dependencies {
 	
 }
 
-java {
+/*java {
 	withSourcesJar()
 	withJavadocJar()
 }
@@ -44,4 +47,4 @@ publishing {
 			from components.java
         }
     }
-}
+}*/
