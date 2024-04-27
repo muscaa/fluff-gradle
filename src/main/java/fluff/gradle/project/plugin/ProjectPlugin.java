@@ -26,7 +26,7 @@ public class ProjectPlugin extends AbstractProject {
 		
 		gradlePlugin = extensions.getByType(GradlePluginDevelopmentExtension.class);
 		gradlePlugin.plugins(plugins -> {
-			plugins.create(name, plugin -> {
+			plugins.register(name, plugin -> {
         		plugin.setId(id);
         		plugin.setImplementationClass(implClass);
         		if (displayName != null) plugin.setDisplayName(displayName);
