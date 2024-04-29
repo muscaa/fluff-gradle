@@ -1,8 +1,6 @@
 plugins {
     id "java-gradle-plugin"
     id "maven-publish"
-    
-    //id "com.github.muscaa.fluff-gradle" version "1.0.9"
 }
 
 gradlePlugin {
@@ -14,19 +12,6 @@ gradlePlugin {
     }
 }
 
-/*group "fluff.gradle"
-version "0"
-
-fluff {
-	include = [ "LICENSE", "NOTICE" ]
-	plugin {
-		name = "fluff"
-		//id = "com.github.muscaa.fluff-gradle"
-		id = "fluff-gradle"
-		implClass = "fluff.gradle.FluffGradle"
-	}
-}*/
-
 repositories {
     mavenCentral()
     maven { url "https://jitpack.io" }
@@ -36,7 +21,7 @@ dependencies {
 	
 }
 
-/*java {
+java {
 	withSourcesJar()
 	withJavadocJar()
 }
@@ -47,4 +32,4 @@ publishing {
 			from components.java
         }
     }
-}*/
+}

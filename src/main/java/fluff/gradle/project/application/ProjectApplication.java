@@ -26,10 +26,8 @@ public class ProjectApplication extends AbstractProject {
 		javaApp.getMainClass().set(mainClass);
 		
         project.getTasks().withType(Jar.class, jar -> {
-        	jar.manifest(manifest -> {
-        		Attributes attr = manifest.getAttributes();
-                attr.put("Main-Class", mainClass);
-        	});
+        	Attributes a = jar.getManifest().getAttributes();
+            a.put("Main-Class", mainClass);
         });
 	}
 }

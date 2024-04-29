@@ -1,7 +1,6 @@
 package fluff.gradle.project.plugin;
 
 import org.gradle.plugin.devel.GradlePluginDevelopmentExtension;
-import org.gradle.plugin.devel.PluginDeclaration;
 
 import fluff.gradle.project.AbstractProject;
 import fluff.gradle.utils.PropUtils;
@@ -26,14 +25,12 @@ public class ProjectPlugin extends AbstractProject {
 		final String description = PropUtils.optional(main.getDescription(), null);
 		
 		gradlePlugin = extensions.getByType(GradlePluginDevelopmentExtension.class);
-		gradlePlugin.plugins(plugins -> {
-			PluginDeclaration pd = plugins.create(name, plugin -> {
-        		plugin.setId(id);
-        		plugin.setImplementationClass(implClass);
-        		if (displayName != null) plugin.setDisplayName(displayName);
-        		if (description != null) plugin.setDescription(description);
-        	});
-			plugins.add(pd);
+		
+		gradlePlugin.getPlugins().create(name, plugin -> {
+			plugin.setId(id);
+			plugin.setImplementationClass(implClass);
+			if (displayName != null) plugin.setDisplayName(displayName);
+			if (description != null) plugin.setDescription(description);
 		});
 	}
 }

@@ -23,14 +23,5 @@ public abstract class TaskInfo extends DefaultTask {
 			includeFiles.get().forEach(System.out::println);
 		}
 		System.out.println();
-		
-		System.out.println("Configurations:");
-		p.getConfigurations().forEach(c -> {
-			System.out.println(c.getName());
-		});
-		System.out.println();
-		
-		Object gradlePlugin = p.getExtensions().getByName("gradlePlugin");
-		System.out.println(gradlePlugin.getClass());
 	}
 }

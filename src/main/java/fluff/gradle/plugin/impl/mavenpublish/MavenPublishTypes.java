@@ -8,17 +8,13 @@ import org.gradle.api.publish.maven.MavenPublication;
 public class MavenPublishTypes {
 	
 	public static final IPublishType MAVEN = (p, publishing) -> {
-		publishing.publications(publications -> {
-			publications.create("maven", MavenPublication.class, publication -> {
-				publication.from(p.getComponents().getByName("java"));
-			});
+		publishing.getPublications().create("maven", MavenPublication.class, publication -> {
+			publication.from(p.getComponents().getByName("java"));
 		});
 	};
 	public static final IPublishType LOCAL = (p, publishing) -> {
-		publishing.repositories(repos -> {
-			repos.maven(repo -> {
-				repo.setUrl(p.uri(p.getLayout().getBuildDirectory().dir("repo")));
-			});
+		publishing.getRepositories().maven(repo -> {
+			repo.setUrl(p.getLayout().getBuildDirectory().dir("repo").get().getAsFile().toURI());
 		});
 	};
 	
