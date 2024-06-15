@@ -2,7 +2,7 @@ package fluff.gradle.extension.impl;
 
 import org.gradle.api.Action;
 import org.gradle.api.plugins.ExtensionAware;
-import org.gradle.api.provider.ListProperty;
+import org.gradle.api.provider.MapProperty;
 
 import fluff.gradle.project.application.ExtensionApplication;
 import fluff.gradle.project.library.ExtensionLibrary;
@@ -20,7 +20,7 @@ public abstract class ExtensionMain implements ExtensionAware {
 		plugin = getExtensions().create("plugin", ExtensionPlugin.class);
 	}
 	
-	public abstract ListProperty<String> getInclude();
+	public abstract MapProperty<String, String> getInclude();
 	
 	public void application(Action<? super ExtensionApplication> action) {
 		action.execute(application);

@@ -2,7 +2,7 @@ package fluff.gradle.utils;
 
 import org.gradle.api.Project;
 import org.gradle.api.plugins.JavaPluginExtension;
-import org.gradle.api.provider.ListProperty;
+import org.gradle.api.provider.MapProperty;
 import org.gradle.api.tasks.bundling.Jar;
 
 import fluff.gradle.FluffGradle;
@@ -10,13 +10,21 @@ import fluff.gradle.FluffGradle;
 public class Utils {
 	
 	private static void addIncludes(FluffGradle fluff, Project p, Jar task) {
-        ListProperty<String> include = fluff.extensions.main.getInclude();
+        MapProperty<String, String> include = fluff.extensions.main.getInclude();
         if (!include.isPresent()) return;
         
+        include.get().forEach((source, dest) -> {
+        	int lastSlash = dest.lastIndexOf('/');
+        	String destDir = lastSlash != -1 ? dest.substring(0, lastSlash) : "";
+        	String destName = lastSlash != -1 ? dest.substring(lastSlash + 1, dest.length()) : dest;
+        	
+        	task.from(p.file(source), spec -> {
+        		spec.into(destDir);
+        		spec.rename(name -> destName);
+        	});
+        });
+        
         //task.from("src/main/java").exclude("**/*.java");
-    	for (String path : include.get()) {
-    		task.from(p.file(path), spec -> spec.into("META-INF"));
-    	}
         
         p.getTasks().named("build").configure(build -> build.dependsOn(task));
 	}
